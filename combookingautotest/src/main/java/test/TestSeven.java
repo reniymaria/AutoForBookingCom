@@ -1,8 +1,11 @@
 package test;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-public class TestSeven {
+
+@Listeners(util.TestngListener.class)
+public class TestSeven extends BaseTest {
 
     /**
      *Steps:
@@ -17,5 +20,15 @@ public class TestSeven {
     @Test
     public void CheckLanguage() {
 
+  /*
+        Actions builder = new Actions(driver);
+
+        Action dragAndDrop = builder.clickAndHold(someElement)
+                .moveToElement(otherElement)
+                .release(otherElement)
+                .build();
+
+        dragAndDrop.perform();
+        */
     }
 }

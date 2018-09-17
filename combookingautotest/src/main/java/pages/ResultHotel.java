@@ -8,7 +8,8 @@ public class ResultHotel extends Page {
     @FindBy(css = "#results_prev_next > p")
     WebElement result;
 
-    public int numberOfResults() {
+    public int numberOfResults() throws InterruptedException {
+        Thread.sleep(2000);
         String resultData = result.getText();
         String[] res = resultData.split(" ");
         return Integer.parseInt(res[2]);

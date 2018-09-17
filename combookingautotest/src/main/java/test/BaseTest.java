@@ -12,7 +12,6 @@ import pages.StartPage;
 import util.ChromeWebDriverInit;
 import util.PropertiesReader;
 
-import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     protected WebDriver driver;
@@ -34,10 +33,10 @@ public class BaseTest {
 
     }
 
- //   @AfterTest
-  //  public void driverClose() {
- //       driver.quit();
- //   }
+    @AfterTest
+    public void driverClose() {
+        driver.quit();
+    }
 
     public StartPage goToMainPage() throws Exception {
         log.info(String.format("Open page by link: %s", baseUrl));

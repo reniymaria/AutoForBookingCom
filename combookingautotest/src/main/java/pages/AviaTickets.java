@@ -10,6 +10,8 @@ import java.util.Date;
 
 public class AviaTickets extends Page {
 
+    private static final String MINSK = "Minsk";
+    private static final String MOW = "MOW";
     private String strDateFormat = "dd.MM.yyyy";
 
     @FindBy(name= "origin")
@@ -29,8 +31,8 @@ public class AviaTickets extends Page {
 
 
     public AviaTickets enterFromToDestination(){
-        sendChar(fromField, "Minsk");
-        sendChar(toField, "MOW");
+        sendChar(fromField, MINSK);
+        sendChar(toField, MOW);
         return this;
     }
 

@@ -11,7 +11,7 @@ public class ChromeWebDriverInit {
 
     }
 
-    public static WebDriver getDriver() {
+    public static synchronized WebDriver getDriver() {
         if (driver == null) {
             System.setProperty(PropertiesReader.getWebDriver(), PropertiesReader.getUrlWebDriver());
             driver = new ChromeDriver();

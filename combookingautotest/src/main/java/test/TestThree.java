@@ -1,8 +1,10 @@
 package test;
 
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(util.TestngListener.class)
 public class TestThree extends BaseTest {
 
 
@@ -13,7 +15,6 @@ public class TestThree extends BaseTest {
      * 3. Enter Country, City and Place
      * 4. Select Date from and To
      * 5. Click Search
-     *
      * Expected Result: Results are found
      */
     @Test
@@ -26,6 +27,6 @@ public class TestThree extends BaseTest {
                         .enterDates()
                         .submit()
                         .resultsIsFound();
-        Assert.assertTrue(result == true, "Nothing is found");
+        Assert.assertTrue(result, "Nothing is found");
     }
 }

@@ -2,9 +2,10 @@ package test;
 
 
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-
+@Listeners(util.TestngListener.class)
 public class TestTwo extends BaseTest {
 
     /**
@@ -27,6 +28,6 @@ public class TestTwo extends BaseTest {
                         .enterDates()
                         .search()
                         .displayedAviaTickets();
-        Assert.assertTrue(results > 2, "Not enough avia tichets are found");
+        Assert.assertTrue(results > 2, "Not enough avia tickets are found");
     }
 }

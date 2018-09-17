@@ -1,18 +1,20 @@
 package test;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-public class TestSix {
+@Listeners(util.TestngListener.class)
+public class TestSix extends BaseTest {
 
     /**
      *Steps:
      * 1. Open booking.com
-     * 2. Open Flights link
-     * 3. Remember number of results
-     * 4. Enter Filters
+     * 2. Open FirstCity
+     * 3. Open Map
+     * 4. Drag map to south
+     * 5. Make screenshot
      *
-     *
-     * Expected Result: Number of results reduced
+     * Expected Result: User can drag map
      *
      */
     @Test

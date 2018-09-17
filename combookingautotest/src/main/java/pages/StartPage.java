@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import util.PropertiesReader;
@@ -11,14 +12,13 @@ import java.util.TimeZone;
 
 public class StartPage extends Page {
 
+    public static final String WARSAW = "Warsaw";
+
     @FindBy(id = "ss")
     public WebElement destination;
 
     @FindBy(xpath = "//*[@id=\"frm\"]/div[1]/div[2]/div/div[2]/div/div/div/div[1]/div/button")
     public WebElement calendarFrom;
-
-    @FindBy(xpath = "//*[@id=\"frm\"]//div[3]//div[1]/div/button")
-    public WebElement calendarTo;
 
     @FindBy(css = ".sb-searchbox__button")
     public WebElement searchButton;
@@ -35,10 +35,18 @@ public class StartPage extends Page {
     @FindBy(xpath = "//*[@id=\"cross-product-bar\"]/div/a[3]")
     public WebElement taxyRentLink;
 
+    @FindBy(css = "#basiclayout > div.promotion-postcards-list > div:nth-child(1) > div:nth-child(1) ")
+    public WebElement firstPostcard;
+
 
     public StartPage enterDestination() {
-        destination.sendKeys("Warsaw");
+        destination.sendKeys(WARSAW);
         return this;
+    }
+
+    public ResultForCity openPostcard() throws Exception {
+        firstPostcard.click();
+        return MyPageFactory.getPage(driver, ResultForCity.class);
     }
 
     public ResultHotel clickSearch() throws Exception {
@@ -78,23 +86,26 @@ public class StartPage extends Page {
 
     public StartPage setDate() throws InterruptedException {
 
-        String oneDate = String.valueOf(getCurrentDay());
-        String SecondDate = String.valueOf(getNextDay());
-        calendarFrom.click();
 
-        for (WebElement ele : allDates) {
-            if (ele.getText().equals(oneDate)) {
-                ele.click();
-                Thread.sleep(500);
-            }
-        }
-        for (WebElement elem : allDates) {
-            if (elem.getText().equals(SecondDate)) {
-                elem.click();
-                break;
-            }
-        }
+        String oneDate = String.valueOf(getCurrentDay());
+        String secondDate = String.valueOf(getNextDay());
+        calendarFrom.click();
+        selectDayFromMultiDateCalendar(oneDate, secondDate);
+
         return this;
+    }
+
+
+    private void selectDayFromMultiDateCalendar(String day, String day2)
+            throws InterruptedException {
+
+        WebElement dateFrom = driver.findElement(By.xpath("//*[@class='c2-day-inner'][text()='"
+                + day + "']"));
+
+        dateFrom.click();
+        Thread.sleep(2000);
+
+
     }
 
 

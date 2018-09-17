@@ -1,10 +1,10 @@
 package test;
 
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import util.Photographer;
 
-
+@Listeners(util.TestngListener.class)
 public class TestOne extends BaseTest {
     /**
      * Steps:
@@ -18,15 +18,11 @@ public class TestOne extends BaseTest {
     @Test
     public void FindHotel() throws Exception {
 
-
         int results = goToMainPage()
                 .enterDestination()
                 .setDate()
                 .clickSearch().numberOfResults();
-        if (results > 2) {
-            Photographer.doScreenshot("Hotel search failed");
-        }
-        Assert.assertTrue(results < 2, "Not enough results are found");
+        Assert.assertTrue(results > 2, "Not enough results are found");
     }
 }
 
