@@ -9,12 +9,14 @@ import org.slf4j.LoggerFactory;
 import test.BaseTest;
 
 public abstract class Page {
+
     public WebDriver driver;
     public WebDriverWait wait = BaseTest.getWait();
-    protected final Logger log = LoggerFactory.getLogger(Page.class);
+    private final Logger log = LoggerFactory.getLogger(Page.class);
 
 
     public void waitForLoad(WebDriver driver) {
+        log.debug("Wait to load the page");
         ExpectedCondition<Boolean> pageLoadCondition = new
                 ExpectedCondition<Boolean>() {
                     public Boolean apply(WebDriver driver) {

@@ -1,5 +1,6 @@
 package test;
 
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -8,27 +9,22 @@ import org.testng.annotations.Test;
 public class TestSeven extends BaseTest {
 
     /**
-     *Steps:
+     * Steps:
      * 1. Open booking.com
-     * 2. Change language to Deutch
+     * 2. Change language to Deutsch
      * 3. Open google
-     * 4. Check that title is displayed in deutch
-     *
+     * 4. Check that title is displayed in Deutsch
      * Expected Result: Language is correct
-     *
      */
+
     @Test
-    public void CheckLanguage() {
+    public void CheckLanguage() throws Exception {
 
-  /*
-        Actions builder = new Actions(driver);
+        Boolean res = goToMainPage()
+                .changeLanguage()
+                .checkLanguage();
 
-        Action dragAndDrop = builder.clickAndHold(someElement)
-                .moveToElement(otherElement)
-                .release(otherElement)
-                .build();
+        Assert.assertTrue(res, "Language is not changed");
 
-        dragAndDrop.perform();
-        */
     }
 }

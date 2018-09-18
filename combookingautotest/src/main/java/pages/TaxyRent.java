@@ -5,9 +5,12 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TaxyRent extends Page {
 
+    private static final Logger log = LoggerFactory.getLogger(TaxyRent.class);
     private static final String FROM = "Moskow";
     private static final String TO = "DME";
     private static final String HOUR = "13";
@@ -26,6 +29,7 @@ public class TaxyRent extends Page {
     @FindBy(xpath = "//*[@aria-label='pickup date input field']")
     public WebElement dateField;
 
+    //Here I could enter any date using method #selectDayFromMultiDateCalendar() StartPage.class
     @FindBy(xpath = "//a[@aria-label ='23, Сентябрь 2018']")
     public WebElement date;
 
@@ -46,7 +50,7 @@ public class TaxyRent extends Page {
 
 
     public TaxyRent enterLocation() {
-
+        log.debug("Enter location");
         waitForLoad(driver);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pickupLocation")));
         sendChar(pickupLocation, FROM);
@@ -58,6 +62,7 @@ public class TaxyRent extends Page {
 
 
     private void sendChar(WebElement element, String value) {
+
         element.clear();
         element.click();
 
@@ -70,6 +75,7 @@ public class TaxyRent extends Page {
     }
 
     public TaxyRent enterDate() {
+        log.debug("Enter date");
         dateField.click();
         date.click();
 
@@ -77,6 +83,7 @@ public class TaxyRent extends Page {
     }
 
     public TaxyRent enterTime() {
+        log.debug("Enter time");
         timeField.click();
         hour.sendKeys(HOUR);
         minute.sendKeys(MIN);
@@ -85,11 +92,12 @@ public class TaxyRent extends Page {
     }
 
     public ResultTaxyRent search() throws Exception {
+        log.debug("Search for rent");
         search.click();
         return MyPageFactory.getPage(driver, ResultTaxyRent.class);
     }
 
-    void tryToOpen() throws Exception {
-
+    void tryToOpen(){
+        log.debug("Open the taxy page");
     }
 }

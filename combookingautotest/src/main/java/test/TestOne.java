@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 @Listeners(util.TestngListener.class)
 public class TestOne extends BaseTest {
+
     /**
      * Steps:
      * 1. Open booking.com

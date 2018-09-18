@@ -7,18 +7,23 @@ import org.testng.annotations.Test;
 public class TestSix extends BaseTest {
 
     /**
-     *Steps:
+     * Steps:
      * 1. Open booking.com
      * 2. Open FirstCity
      * 3. Open Map
-     * 4. Drag map to south
-     * 5. Make screenshot
-     *
-     * Expected Result: User can drag map
-     *
+     * 4. Click +
+     * 5. Make screenshot (Screenshot can be found in snapshot folder)
+     * 6. Click -
+     * 7. Make screenshot
+     * Expected Result: User can resize map
      */
     @Test
-    public void CheckFiltersForFlights() {
+    public void CheckFiltersForFlights() throws Exception {
+
+        goToMainPage()
+                .openPostcard()
+                .openMap()
+                .resizeMap();
 
     }
 }

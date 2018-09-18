@@ -1,6 +1,7 @@
 package util;
 
 import org.testng.*;
+import test.BaseTest;
 
 public class TestngListener implements ITestListener, ISuiteListener, IInvokedMethodListener {
 
@@ -50,7 +51,7 @@ public class TestngListener implements ITestListener, ISuiteListener, IInvokedMe
     }
 
     private void handleFailure(ITestResult result) {
-        if (ChromeWebDriverInit.getDriver() != null) {
+        if (BaseTest.getDriver() != null) {
             String caseName = getCaseName(result);
             Photographer.doScreenshot(caseName);
         }

@@ -6,6 +6,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import test.BaseTest;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class Photographer {
 
     public static void doScreenshot(String caseName) {
         String filename = getSnapshotName(caseName) + ".png";
-        File scrFile = ((TakesScreenshot)ChromeWebDriverInit.getDriver())
+        File scrFile = ((TakesScreenshot) BaseTest.getDriver())
                 .getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(scrFile, new File(filename));
